@@ -6,7 +6,6 @@ export function Cards({ onClick }) {
     fetch("https://pokeapi.co/api/v2/pokemon/35")
       .then((response) => response.json())
       .then((data) => setPokemon(String(data.sprites.front_default)));
-    //   .then((data) => setPokemon(data));
     console.log(pokemon);
   }
   return (
