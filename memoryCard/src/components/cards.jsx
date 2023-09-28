@@ -1,21 +1,22 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+let pokemons = [];
 
 export function Cards({ onClick }) {
   const [pokemon, setPokemon] = useState();
-  function getPokemon() {
-    fetch("https://pokeapi.co/api/v2/pokemon/35")
+  useEffect(() => {
+    fetch(`https://pokeapi.co/api/v2/pokemon/1`)
       .then((response) => response.json())
       .then((data) => setPokemon(String(data.sprites.front_default)));
-    console.log(pokemon);
-  }
+  }, []);
+
   return (
     <>
-      {getPokemon()}
       <button onClick={onClick}>
+        {/* {pokemons.map((poke) => {
+          return <img key={poke} src={poke}></img>;
+        })} */}
         <img src={pokemon}></img>
-        carta
       </button>
-      <button onClick={getPokemon}>TESTE</button>
     </>
   );
 }
