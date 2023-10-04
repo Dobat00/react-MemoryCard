@@ -1,43 +1,12 @@
 import { useState, useEffect } from "react";
 
-// let pokemons = [];
-// export function Cards({ onClick }) {
-//   const [pokemon, setPokemon] = useState();
-//   useEffect(() => {
-//     fetch(`https://pokeapi.co/api/v2/pokemon/1`)
-//       .then((response) => response.json())
-//       .then((data) => pokemons.push(String(data.sprites.front_default)));
-
-//     fetch(`https://pokeapi.co/api/v2/pokemon/2`)
-//       .then((response) => response.json())
-//       .then((data) => pokemons.push(String(data.sprites.front_default)));
-//     fetch(`https://pokeapi.co/api/v2/pokemon/3`)
-//       .then((response) => response.json())
-//       .then((data) => pokemons.push(String(data.sprites.front_default)));
-//   }, []);
-
-// return (
-//   <>
-//     <button
-//       onClick={() => {
-//         console.log(pokemons[0]);
-//         console.log(pokemon);
-//       }}
-//     ></button>
-//     <button>
-//       <img src={pokemons[0]}></img>
-//     </button>
-//   </>
-// );
-// }
-
 export function Cards({ onClick }) {
   const [pokemon, setPokemon] = useState();
-  apiFetch();
-  console.log(pokemon);
+  let a = createCard(248);
+
   return (
     <>
-      {createCard()}
+      {/* {b} */}
       <button
         onClick={() => {
           console.log(pokemon);
@@ -45,14 +14,16 @@ export function Cards({ onClick }) {
       ></button>
     </>
   );
-  function apiFetch() {
-    fetch(`https://pokeapi.co/api/v2/pokemon/1`)
+  function apiFetch(numero) {
+    fetch(`https://pokeapi.co/api/v2/pokemon/${numero}`)
       .then((response) => response.json())
       .then((data) => setPokemon(String(data.sprites.front_default)));
+    console.log("funcao apiFetch() invocada");
     return pokemon;
   }
 
-  function createCard() {
+  function createCard(numero) {
+    apiFetch(numero);
     return (
       <>
         <button>
