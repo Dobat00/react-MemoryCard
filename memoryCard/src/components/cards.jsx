@@ -2,9 +2,10 @@ import { useState, useEffect } from "react";
 
 export function Cards({ onClick, numero }) {
   const [pokemon, setPokemon] = useState();
-  let a = createCard(numero);
+  const [showCard, setShowCard] = useState(true);
+  let card = createCard(numero);
 
-  return <>{a}</>;
+  return <>{card}</>;
   function apiFetch(numero) {
     fetch(`https://pokeapi.co/api/v2/pokemon/${numero}`)
       .then((response) => response.json())
@@ -17,10 +18,21 @@ export function Cards({ onClick, numero }) {
     apiFetch(numero);
     return (
       <>
-        <button onClick={onClick}>
-          <img src={pokemon}></img>
-        </button>
+        {showCard && (
+          <button
+            onClick={() => {
+              cardDisplay();
+              onClick();
+            }}
+          >
+            <img src={pokemon}></img>
+          </button>
+        )}
       </>
     );
+  }
+
+  function cardDisplay() {
+    setShowCard(false);
   }
 }
